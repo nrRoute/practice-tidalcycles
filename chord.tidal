@@ -1,0 +1,28 @@
+-- see the list of available chords
+chordList
+
+-- Playing with chords
+d1 $ n "c'maj e'min" # s "supermandolin"
+d1 $ note "c'maj e'min" # s "gtr"
+
+-- Chord inversions
+d1 $ n "c'major7'ii" # s "supermandolin"
+
+-- modify the number of notes
+d1 $ n "c'major7'6" # s "supermandolin"
+
+-- open voicing
+d1 $ n "c'major7'o" # s "superpiano"
+
+-- sharp or flat
+d1 $ n "cf'maj c'maj cs'maj" # s "supermandolin"
+
+-- octave
+d1 $ n "c4'maj c5'maj c6'maj" # s "supermandolin"
+
+-- `|+` operator
+d1 $ n (" c e f" |+ "<'maj 'min>") # s "supermandolin"
+-- equivalent to
+d1 $ n "<[c'maj e'maj f'maj] [c'min e'min f'min]>" # s "supermandolin"
+
+d1 $ s "~"

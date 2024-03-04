@@ -1,0 +1,34 @@
+-- Silence
+do
+    d1 $ silence
+    d2 $ silence
+
+d1 $ fast 0.3 $ n (run 32) # s "amencutup"
+d1 $ silence
+d1 $ s "808" # n "<0 1 2 3>"
+d1 $ s "gtr*4" # note "c a f e"
+
+d1 $ s "bd ~ sn:3 [~ bd]"
+d2 $ s "hh*8"
+
+d1 $ s "bd*2 [[sn:3 bd*2] lt] mt [[sn:3 lt] [~ bd]]"
+d2 $ s "808*8" # note "c fs f b a g e d f"
+
+d1 $ s "hardkick*4" # n "1 2 3 4"
+d1 $ s "gabbaloud*4" # n "0 .. 3"
+
+d1 $ chop 32
+    $ s "break"
+    # legato 1
+
+d1 $ s "kick"
+d1 $ s "kick:3"
+d1 $ s "kick snare kick snare kurt hi lo hi lo"
+d1 $ s "cpu:0 cpu:2 cpu:4 cpu:6 cpu:0 cpu:2 cpu:6 cpu:8"
+d1 $ n "0 2 2 ~ 8 ~ 8 ~" # s "cpu"
+
+d1 $ s "hi lo hi lo"
+d1 $ s "hi lo [hi hi] lo"
+d1 $ n "0 1 [5 5 5] 4" # s "drum"
+d1 $ s "hi lo [hi [hi lo hi lo]] lo"
+d1 $ s "[hi lo hi] [hi lo hi lo]"

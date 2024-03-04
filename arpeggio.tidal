@@ -1,0 +1,53 @@
+-- Arpeggios from notes
+d1 $ n "c a f e" # s "supermandolin"
+d1 $ n "<c a f e>" # s "supermandolin"
+
+d1 $ n (off 0.125 (|+ 7) "<c a f e>")
+    # sound "supermandolin"
+
+d1 $ n (off 0.125 (|+ 7) "<c*2 a(3,8) f(3,8,2) e*2>")
+    # s "supermandolin"
+    # legato 2
+
+d1 $ jux rev $ n (off 0.125 (|+ 7) "<c*2 a(3,8) f(3,8,2) e*2>")
+    # s "supermandolin"
+    # legato 2
+
+d1 $ jux rev $ n (off 0.125 (|+ 12) $ off 0.125 (|+ 7) "<c*2 a(3,8) f(3,8,2) e*2>")
+    # s "supermandolin"
+    # legato 2
+
+d1 $ n "c'maj"
+    # s "supermandolin"
+    # legato 2
+
+d1 $ arp "up" $ n "c'maj" 
+    # sound "supermandolin"
+    # sustain 0.5
+
+d1 $ arp "up" $ n "c'maj'4" 
+    # sound "supermandolin"
+    # sustain 0.5
+
+d1 $ arp "up" $ n "c'maj'4 e'min" 
+    # sound "supermandolin"
+    # sustain 0.5
+
+d1 $ arp "pinkyup" $ n "c'maj'4 e'min" 
+    # sound "supermandolin"
+    # sustain 0.5
+
+d1 $ arp "<pinkyup down thumbup up>" $ n "c'maj'4 e'min" 
+    # sound "supermandolin"
+    # sustain 0.5
+
+d1 $ jux rev $ arp "<pinkyup down thumbup up>" $ n "<c'maj'4 e4'min'8 f4'maj'4>" 
+    # sound "supermandolin"
+    # sustain 2 # room 0.3 # sz 0.9
+
+d1 $ chunk 4 (|- note 5) $ jux rev $
+    arp "<pinkyup down thumbup up>" $ n "<c'maj'4 e4'min'8 f4'maj'4>"
+    # s "supermandolin"
+    # sustain 2 # room 0.3 # sz 0.9
+
+d1 $ s "~"

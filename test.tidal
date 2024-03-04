@@ -1,0 +1,169 @@
+d1 $ sound "bd sn"
+
+-- Path: test.tidal
+d1 $ sound "bd sn"
+d1 $ silence
+d1 $ sound "drum:1"
+d1 $ silence
+d1 $ sound "drum:2"
+d1 $ sound "drum" # n 1
+d1 $ s "bd sn"
+d1 $ sound "bd hh sn hh"
+d1 $ s "bd bd hh bd sn bd hh bd"
+setcps 0.6
+d2 $ sound "sn sn:2 sn bd sn"
+setcps (-1)
+setcps 0.6
+
+d1 $ sound "arpy cp arpy:2"
+d2 $ sound "sn sn:2 bd sn"
+
+solo 2
+unsolo 2
+mute 2
+unmute 2
+
+d1 $ s "bd ~ sn:3 bd sn:5 ~ bd:2 sn:2"
+mute 2
+unmute 2
+
+d1 $ s "bd [bd cp] bd bd"
+d1 $ s "[bd bd sn:5] [bd sn:3]"
+mute 2
+
+-- Symbols
+d1 $ s "[[bd bd] bd sn:5] [bd sn:3]"
+d1 $ s "[[bd [bd bd bd bd]] bd sn:5] [bd sn:3]"
+d1 $ s "bd sd*2"
+d1 $ s "bd [sd cp]*2"
+d1 $ s "bd [sn cp]/2"
+d1 $ s "bd sn/2"
+d1 $ s "bd sn/2"
+d1 $ s "bd <sd cp arpy>"
+d1 $ sound "[bd:0|bd:1]"
+d1 $ sound "[sn|cp]"
+d1 $ sound "[sn, cp]"
+d1 $ sound "bd!3 sn"
+
+-- Effects
+d1 $ s "drum drum drum drum" # vowel "a"
+d1 $ s "drum drum drum drum" # vowel "i u e o"
+d1 $ s "drum drum drum drum" # vowel "<a o e e>"
+d1 $ s "drum drum drum drum" # vowel "a o p p"
+d1 $ s "drum drum drum drum" # vowel "a o e"
+d1 $ vowel "a o ~ i" # sound "drum"
+
+-- Gain, pitch and panorama
+d1 $ s "bd hh sn:1 hh sn:1 hh" # gain "1 0.7 0.5"
+d1 $ s "numbers:1 numbers:2 numbers:3 numbers:4" # speed "1 1.5 2 0.5"
+d1 $ s "numbers:1 numbers:2 numbers:3 numbers:4" # speed "1 1.5 2 0.5"
+d1 $ speed "1 2 4" # sound "jungbass:6"
+d1 $ speed "1" # sound "jungbass:6"
+d1 $ up "0 ~ 12 24" # sound "jungbass:6"
+d1 $ up "0 ~ 12 24" # sound "jungbass:5"
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # pan "0 0.5 1"
+
+-- Distortion, reverb, delay and filters
+d1 $ s "kurt:4 kurt:4" # shape "0 0.78" # gain "0.7"
+d1 $ sound "cp" # delay 0.8 # delaytime (1/6) # delayfeedback 0.6 # lock 1
+d1 $ sound "industrial:3*4" # delay "<0 0.4 0.8>" # delaytime "0.2 0.05" # delayfeedback "<0.5 0.9>" # lock 1
+d1 $ s "[~ sn]*2" # dry 0.4 # room 0.6 # size 0.8
+d1 $ sound "tabla*4" # n "0 1 2 3" # cutoff 400 # resonance 0.2
+d1 $ sound "tabla*4" # n "0 1 2 3" # hcutoff 600 # hresonance 0.2
+
+-- Transforming patterns
+-- Slow, fast and hurry
+d1 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ slow 2 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ fast 2 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ fast 0.5 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ hurry 2 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ hurry 0.5 $ s "arpy arpy:1 arpy:2 arpy:3"
+
+-- Reorganize patterns
+d1 $ rev $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ rev $ fast 2 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ palindrome $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ iter 4 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ every 4 (fast 2) $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ every 4 (# vowel "a o") $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ jux (rev) $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ jux (hurry 2) $ s "arpy arpy arpy:1 arpy:2"
+d1 $ chunk 4 (hurry 2) $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ chunk 4 (fast 2) $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ chunk 3 (# speed 2) $ s "alphabet:0 alphabet:1 alphabet:2 alphabet:3"
+mute 1
+unmute 1
+
+-- Even further into transformations
+d1 $ jux (rev . (slow 1.5)) $ s "arpy arpy:1 arpy:2 arpy:3"
+d1 $ s "jvbass [jvbass jvbass] jvbass ~" # note "1 [3 5] 7"
+d1 $ s "jvbass [jvbass jvbass] jvbass ~" # iter 3 (note "1 [3 5] 7")
+d1 $ s "bd*8" # pan (slow 4 $ sine)
+d1 $ s "moog*16" # n "<0 1 2>" # legato 1 # cutoff (range 200 2400 $ saw) # resonance 0.2
+d1 $ s "moog" # n "<0 1 2>" # legato 1 # cutoffbus 1 (segment 32 $ range 200 2400 $ saw) # resonance 0.2
+
+-- Different kind of patterns
+-- Cyclic / repetitive
+d1 $ n "0 1 2 3" # sound "arpy"
+d1 $ n (run 4) # s "arpy"
+d1 $ n "0 .. 3" # s "arpy"
+
+-- Symmetry
+d1 $ slow 2 $ n "0 1 2 3 3 2 1 0" # s "arpy"
+d1 $ palindrome $ n (run 4) # s "arpy"
+
+-- Polymetric / polyrhythmic sequences
+d1 $ s "[voodoo voodoo:3, arpy arpy:4 arpy:2]"
+d1 $ s "{voodoo voodoo:3, arpy arpy:4 arpy:2}"
+d1 $ s "[drum bd hh bd, can can:2 can:3 can:4 can:2]"
+d1 $ s "{drum bd hh bd, can can:2 can:3 can:4 can:2}"
+d1 $ s "[bd sn, can:2 can:3 can:1, arpy arpy:1 arpy:2 arpy:3 arpy:5]"
+d1 $ s "{bd sn, can:2 can:3 can:1, arpy arpy:1 arpy:2 arpy:3 arpy:5}"
+
+-- Euclidean rhythm/Bjorklund
+d1 $ s "bd(5,8)"
+d1 $ s "bd(3, 8) sn*2"
+d1 $ s "bd(3,8) sn(5,8)"
+d1 $ s "bd(5,8,2)"
+
+-- Randomness
+d1 $ sometimes (# speed "2") $ sound "drum*8"
+d1 $ often (# speed "2") $ sound "drum*8"
+d1 $ s "arpy(3,8)" # n (irand 16)
+d1 $ s "tink*16" # gain rand
+d1 $ degradeBy 0.2 $ sound "tink*16"
+d1 $ s "bd sn:2? bd sn?"
+
+-- Manipulating Samples
+d1 $ s "bev"
+-- wait a bit, then..
+hush
+d1 $ s "bev" # cut 1
+d1 $ s "bev ~" # cut 1
+d2 $ slow 4 $ sound "pebbles ~" # cut 1
+d1 $ s "bev ~ bev ~" # legato 1
+d2 $ s "~"
+d1 $ chop 32 $ s "bev"
+d1 $ slow 4 $ chop 4 $ s "arpy:1 arpy:2 arpy:3 arpy:4"
+d1 $ slow 4 $ striate 4 $ s "arpy:1 arpy:2 arpy:3 arpy:4"
+d1 $ randslice 32 $ s "bev"
+d1 $ loopAt 8 $ s "bev"
+d1 $ loopAt "<8 4 16>" $ chop 64 $ s "bev*4" # cut 1
+d1 $ rev $ loopAt 8 $ chop 128 $ s "bev"
+
+-- Superdirt synthesizers
+d1 $ n "0 4 7" # sound "superpiano"
+
+-- Difference between functions n and note
+d1 $ note "0 4 7" # sound "superpiano"
+d1 $ sound "bd*4" # n "<0 4>" # note "0 12 -7 -12"
+
+-- Playing notes
+d1 $ note "c a f e" # s "supermandolin"
+d1 $ note "0 9 5 4" # s "supermandolin"
+d1 $ note "c4 a3 f6 e5" # s "supermandolin"
+d1 $ note "c a f e" # s "superpiano" |- note 24
+d1 $ sound "~"

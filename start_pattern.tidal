@@ -1,0 +1,23 @@
+-- nudge
+d1 $ s "bd*4" # nudge 0.9
+d2 $ fast 2 $ s "~ sn" # nudge 0.4
+
+-- all
+all $ (|+ nudge 0.2) -- adding 0.2 to the nudge param
+-- equivalent to
+nudgeAll 0.2
+
+-- qtrigger and trigger
+d2 $ sound "bd hh hh hh"
+d2 $ qtrigger $ sound "bd hh hh hh"
+d2 $ trigger $ sound "bd hh hh hh"
+
+-- resetCycles
+do
+    resetCycles
+    d1 $ s "bd*4"
+    d2 $ s "~ hh ~ hh*2"
+
+do
+    d1 $ silence
+    d2 $ silence
